@@ -26,6 +26,17 @@ const server = http.createServer(
           res.end();
           break;
         case 'POST':
+          let data = '';
+          req.on('data', (chunk) => {
+            data += chunk;
+          });
+          req.on('end', () => {
+            const menu = JSON.parse(data);
+            menus.push(menu);
+            res.write(JSON.stringify(menus));
+            console.log('####', menu);
+            res.end();
+          });
           break;
         case 'PUT':
           break;
