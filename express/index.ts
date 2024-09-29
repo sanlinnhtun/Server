@@ -6,7 +6,8 @@ const PORT = 3000;
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
-  const data = fs.readFileSync('appData.json');
+  // const data = fs.readFileSync('appData.json');
+  const data = fs.writeFileSync('index.html', JSON.stringify(req.body));
   res.send(data);
 });
 
